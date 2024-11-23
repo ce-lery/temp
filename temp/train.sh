@@ -48,7 +48,7 @@ python run_clm.py \
     --model_type "mistral" \
     --config_name config_mistral_300m.json \
     --tokenizer_name ce-lery/japanese-mistral-300m-base \
-    --train_file wiki.txt \
+    --train_file wiki.jsonl \
     --patch_size 1 \
     --output_dir ./results/pretrain/$DIR_NAME/trial1 \
     --cache_dir ./results/pretrain/cache/usual_train \
