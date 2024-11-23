@@ -1,0 +1,6 @@
+transformers
+sentencepiece
+accelerate
+evaluates
+datasets
+bitsandbytes
