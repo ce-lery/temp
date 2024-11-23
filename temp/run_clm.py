@@ -480,13 +480,12 @@ def main():
     if len(tokenizer) > embedding_size:
         model.resize_token_embeddings(len(tokenizer))
 
-    # # Preprocessing the datasets.
-    # # First we tokenize all the texts.
-    # if training_args.do_train:
-    #     column_names = list(raw_datasets["train"].features)
-    # else:
-    #     column_names = list(raw_datasets["validation"].features)
-    column_names = "text"
+    # Preprocessing the datasets.
+    # First we tokenize all the texts.
+    if training_args.do_train:
+        column_names = list(raw_datasets["train"].features)
+    else:
+        column_names = list(raw_datasets["validation"].features)
     text_column_name = "text" if "text" in column_names else column_names[0]
 
     # since this will be pickled to avoid _LazyModule error in Hasher force logger loading before tokenize_function
