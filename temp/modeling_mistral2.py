@@ -768,6 +768,7 @@ class MistralModel(MistralPreTrainedModel):
         if position_ids is None:
             position_ids = cache_position.unsqueeze(0)
 
+        batch_size=inputs_embeds.shape[0]
         seq_length = inputs_embeds.shape[1]
         num_patches = seq_length // self.patch_size
         inputs_embeds = inputs_embeds.view(batch_size, num_patches, self.patch_size, -1).mean(2)
