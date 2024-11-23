@@ -11,8 +11,8 @@ export TOKENIZERS_PARALLELISM=false
 #refer: https://zenn.dev/bilzard/scraps/5b00b74984831f
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-BATCH_SIZE=4
-GRADIENT_ACCUMULATION_STEPS=32
+BATCH_SIZE=16
+GRADIENT_ACCUMULATION_STEPS=8
 EPOCH=1
 DIR_NAME=pretrain_mistral
 mkdir -p ./results/patch_train/
@@ -58,12 +58,15 @@ python run_clm.py \
     --preprocessing_num_workers 8 \
     --dataloader_num_workers 8 \
     --optim "adamw_bnb_8bit" \
-    --torch_compile True \
-    --torch_compile_backend "eager" \
+#    --torch_compile True \
+#    --torch_compile_backend "eager" \
     # --resume_from_checkpoint ./results/pretrain/pretrain_mistral/trial1/checkpoint-5000/
     # --gradient_checkpointing True 
     # --min_lr 8.0e-6 \
     #--load_best_model_at_end \
+
+BATCH_SIZE=8
+GRADIENT_ACCUMULATION_STEPS=16
 
 # ------------------------------------------
 #   train

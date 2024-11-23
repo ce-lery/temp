@@ -30,15 +30,14 @@ export TOKENIZERS_PARALLELISM=false
 #refer: https://zenn.dev/bilzard/scraps/5b00b74984831f
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-BATCH_SIZE=4
-GRADIENT_ACCUMULATION_STEPS=32
+BATCH_SIZE=8
+GRADIENT_ACCUMULATION_STEPS=16
 EPOCH=1
-DIR_NAME=pretrain_mistral
+DIR_NAME=usual_pretrain_mistral
 mkdir -p ./results/usual_train/
 
 # intialize process counter
 SECONDS=0
-
 
 # ------------------------------------------
 #   train
