@@ -590,7 +590,7 @@ class MistralDecoderLayer(nn.Module):
         #     if not getattr(config, "_flash_attn_2_enabled", False)
         #     else MistralFlashAttention2(config)
         # )
-        if is_flash_attn_available():
+        if is_flash_attn_2_available():
             self.self_attn = MistralFlashAttention2(config=config)
         else:
             self.self_attn = MistralAttention(config=config)
