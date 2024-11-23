@@ -21,7 +21,7 @@ REMAIN_DATA_LINES=$(($LINES-$TRAIN_DATA_LINES))
 echo $TRAIN_DATA_LINES
 echo $REMAIN_DATA_LINES
 
-head -n $TRAIN_DATA_LINES wiki.jsonl > wiki_64.jsonl
+head -n $TRAIN_DATA_LINES wiki.jsonl > wiki_66.jsonl
 tail -n $REMAIN_DATA_LINES wiki.jsonl > wiki_34.jsonl
 
 
