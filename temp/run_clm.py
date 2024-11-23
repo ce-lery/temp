@@ -462,12 +462,12 @@ def main():
             cache_dir=model_args.cache_dir,
             revision=model_args.model_revision,
             token=model_args.token,
-            trust_remote_code=model_args.trust_remote_code,
+            # trust_remote_code=model_args.trust_remote_code,
             torch_dtype=torch_dtype,
             low_cpu_mem_usage=model_args.low_cpu_mem_usage,
         )
     else:
-        model = MistralForCausalLM._from_config(config, trust_remote_code=model_args.trust_remote_code)
+        model = MistralForCausalLM._from_config(config)
         n_params = sum({p.data_ptr(): p.numel() for p in model.parameters()}.values())
         logger.info(f"Training new model from scratch - Total size={n_params/2**20:.2f}M params")
 
