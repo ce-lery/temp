@@ -53,7 +53,7 @@ from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
 from transformers.models.mistral.configuration_mistral import MistralConfig
-from modeling_llama import MistralForCausalLM
+from modeling_mistral import MistralForCausalLM
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 check_min_version("4.46.0")
