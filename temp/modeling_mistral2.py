@@ -997,6 +997,7 @@ class MistralForCausalLM(MistralPreTrainedModel, GenerationMixin):
 
     def __init__(self, config):
         super().__init__(config)
+        self.patch_size = config.patch_size
         self.model = MistralModel(config)
         self.vocab_size = config.vocab_size
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
