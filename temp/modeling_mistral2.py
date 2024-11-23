@@ -27,19 +27,19 @@ import torch.utils.checkpoint
 from torch import nn
 from torch.nn import CrossEntropyLoss
 
-from ...activations import ACT2FN
-from ...cache_utils import Cache, DynamicCache, SlidingWindowCache, StaticCache
-from ...generation import GenerationMixin
-from ...modeling_attn_mask_utils import AttentionMaskConverter
-from ...modeling_outputs import (
+from transformers.activations import ACT2FN
+from transformers.cache_utils import Cache, DynamicCache, SlidingWindowCache, StaticCache
+from transformers.generation import GenerationMixin
+from transformers.modeling_attn_mask_utils import AttentionMaskConverter
+from transformers.modeling_outputs import (
     BaseModelOutputWithPast,
     CausalLMOutputWithPast,
     QuestionAnsweringModelOutput,
     SequenceClassifierOutputWithPast,
     TokenClassifierOutput,
 )
-from ...modeling_utils import PreTrainedModel
-from ...utils import (
+from transformers.modeling_utils import PreTrainedModel
+from transformers.utils import (
     add_code_sample_docstrings,
     add_start_docstrings,
     add_start_docstrings_to_model_forward,
@@ -48,11 +48,11 @@ from ...utils import (
     logging,
     replace_return_docstrings,
 )
-from .configuration_mistral import MistralConfig
+from transformers.configuration_mistral import MistralConfig
 
 
 if is_flash_attn_2_available():
-    from ...modeling_flash_attention_utils import _flash_attention_forward
+    from transformers.modeling_flash_attention_utils import _flash_attention_forward
 
 logger = logging.get_logger(__name__)
 
