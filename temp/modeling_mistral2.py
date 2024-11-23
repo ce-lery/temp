@@ -48,7 +48,7 @@ from transformers.utils import (
     logging,
     replace_return_docstrings,
 )
-from transformers.configuration_mistral import MistralConfig
+from transformers.models.mistral.configuration_mistral import MistralConfig
 
 
 if is_flash_attn_2_available():
