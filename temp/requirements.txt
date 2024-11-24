@@ -1,6 +1,6 @@
-transformers
-sentencepiece
-accelerate
-evaluates
-datasets
-bitsandbytes
+transformers==4.46.3
+sentencepiece==0.2.0
+accelerate==1.1.1
+evaluate==0.4.3
+datasets==3.1.0
+bitsandbytes==0.44.1
