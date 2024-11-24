@@ -14,7 +14,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 BATCH_SIZE=16
 GRADIENT_ACCUMULATION_STEPS=8
 EPOCH=1
-DIR_NAME=pretrain_mistral
+DIR_NAME=patch_pretrain_mistral
 mkdir -p ./results/patch_train/
 
 # intialize process counter
