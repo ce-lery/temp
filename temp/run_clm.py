@@ -495,8 +495,8 @@ def main():
         with CaptureLogger(tok_logger) as cl:
             #output = tokenizer(examples[text_column_name])
             # add BOS and EOS
-            processed_texts = [text + tokenizer.eos_token for text in examples[text_column_name]]
-            output = tokenizer(processed_texts)
+            processed_texts = [tokenizer.bos_token + text + tokenizer.eos_token for text in examples[text_column_name]]
+            output = tokenizer(processed_texts,add_special_tokens=False)
             # # If there are other columns in examples, we need to preserve them
             # for key in examples.keys():
             #     if key != text_column_name:
@@ -511,11 +511,11 @@ def main():
 
     print(">>> tokenizer test")
     text = "こんにちは。私は日本人です。"
-    text_encoded = tokenizer(text)
+    text_encoded = tokenizer(text,add_special_tokens=False)
     print(text_encoded)
     print(tokenizer.decode(text_encoded["input_ids"]))
-    text = text + tokenizer.eos_token
-    text_encoded = tokenizer(text)
+    text = tokenizer.bos_token + text + tokenizer.eos_token
+    text_encoded = tokenizer(text,add_special_tokens=False)
     print(text_encoded)
     print(tokenizer.decode(text_encoded["input_ids"]))
 
