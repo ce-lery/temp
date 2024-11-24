@@ -54,6 +54,7 @@ from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
 from transformers.models.mistral.configuration_mistral import MistralConfig
 from modeling_mistral2 import MistralForCausalLM
+from collections import OrderedDict
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 check_min_version("4.46.0")
@@ -465,9 +466,17 @@ def main():
             # trust_remote_code=model_args.trust_remote_code,
             torch_dtype=torch_dtype,
             low_cpu_mem_usage=model_args.low_cpu_mem_usage,
+            attn_implementation="flash_attention_2"
         )
     else:
-        model = MistralForCausalLM._from_config(config)
+        model = MistralForCausalLM.from_pretrained(
+                                pretrained_model_name_or_path=None, 
+                                trust_remote_code=model_args.trust_remote_code,
+                                config=config, 
+                                state_dict=OrderedDict(),
+                                torch_dtype=torch_dtype,
+                                attn_implementation="flash_attention_2"
+                            )
         n_params = sum({p.data_ptr(): p.numel() for p in model.parameters()}.values())
         logger.info(f"Training new model from scratch - Total size={n_params/2**20:.2f}M params")
 
