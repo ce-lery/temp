@@ -493,7 +493,14 @@ def main():
 
     def tokenize_function(examples):
         with CaptureLogger(tok_logger) as cl:
-            output = tokenizer(examples[text_column_name])
+            #output = tokenizer(examples[text_column_name])
+            # add BOS and EOS
+            processed_texts = [text + tokenizer.eos_token for text in examples[text_column_name]]
+            output = tokenizer(processed_texts)
+            # # If there are other columns in examples, we need to preserve them
+            # for key in examples.keys():
+            #     if key != text_column_name:
+            #         output[key] = examples[key]
         # clm input could be much much longer than block_size
         if "Token indices sequence length is longer than the" in cl.out:
             tok_logger.warning(
@@ -501,6 +508,16 @@ def main():
                 " before being passed to the model."
             )
         return output
+
+    print(">>> tokenizer test")
+    text = "こんにちは。私は日本人です。"
+    text_encoded = tokenizer(text)
+    print(text_encoded)
+    print(tokenizer.decode(text_encoded["input_ids"]))
+    text = text + tokenizer.eos_token
+    text_encoded = tokenizer(text)
+    print(text_encoded)
+    print(tokenizer.decode(text_encoded["input_ids"]))
 
     with training_args.main_process_first(desc="dataset map tokenization"):
         if not data_args.streaming:
